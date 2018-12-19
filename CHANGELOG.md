@@ -1,3 +1,7 @@
+## 1.0.0+8
+
+- Improved inline docs.
+
 ## 1.0.0+7
 
 - Added inline documentation.
