@@ -12,26 +12,34 @@ import "dart:math" as Math;
 import 'package:sprung/main.dart';
 import 'package:sprung/sprung.dart';
 
+final e = Math.exp;
+final sin = Math.sin;
+final cos = Math.cos;
+
 void main() {
-  testWidgets('Startup test', (WidgetTester tester) async {
+  testWidgets('Demo runs', (WidgetTester tester) async {
     await tester.pumpWidget(MyApp());
     expect(find.text('Sprung Demo'), findsOneWidget);
   });
 
-  test("sprung", () {
-    final sprung = Sprung();
+  test("critically", () {
+    final sprung = Sprung(damped: Damped.critically);
 
     expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: 5e-3));
     expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: 5e-3));
+  });
 
-    final e = Math.exp;
-    final sin = Math.sin;
-    final cos = Math.cos;
+  test("over", () {
+    final sprung = Sprung(damped: Damped.over);
 
-    /// assumes m=1, k=180, c=12
+    expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: 5e-3));
+    expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: 5e-3));
+  });
 
-    f(t) => -0.5 * e(-6 * t) * (-2 * e(6 * t) + sin(12 * t) + 2 * cos(12 * t));
+  test("under", () {
+    final sprung = Sprung(damped: Damped.under);
 
-    expect(sprung.transform(0.1), moreOrLessEquals(f(0.1), epsilon: 5e-3));
+    expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: 5e-3));
+    expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: 5e-3));
   });
 }
