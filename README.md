@@ -1,16 +1,45 @@
 # sprung
 
-A new Flutter project.
+Sprung is an easy-to-consume Curve that uses real physics equations to drive your animations.
 
-## Getting Started
+## Easy to consume
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+```dart
+AnimatedContainer(
+  curve: Sprung(),
+  /// ...
+),
+```
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+`Sprung()` also supports three damping curves, `Damped.under`, `Damped.critically`, and `Damped.over`. 
+
+```dart
+AnimatedContainer(
+  curve: Sprung(
+    damped: Damped.under
+  ),
+  /// ...
+),
+```
+
+*Note: Sprung is critically damped by default.*
+
+## Based on Physics
+
+Using Newton's Second Law of Motion, Hooke's Law, and velocity based damping, we implement the following equation in three finite cases.
+
+![m times x dot dot equals negative k times parenthesis x minus 1 close parenthesis minus c times x dot](docs/equation.png)
+
+## Believable Motion
+
+![demo of under, critically, and over damped Flutter curves](docs/demo.gif)
+
+## Reliable
+
+All curves are subjected to unit tests and gaurantee an epsilon of `5e-3`
+
+## Credits
+
+https://medium.com/@dtinth/spring-animation-in-css-2039de6e1a03
