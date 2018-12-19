@@ -14,6 +14,7 @@ enum Damped {
 }
 
 /// A Curve that uses real physics equations to drive realistic animations.
+///
 /// Uses three curves, [Damped.under], [Damped.critically], and [Damped.over].
 ///
 /// [Damped.under] provides the most "springy" animation.
