@@ -7,7 +7,7 @@
 
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:sprung_demo/main.dart';
+import '../lib/main.dart';
 
 void main() {
   testWidgets('Demo runs', (WidgetTester tester) async {
