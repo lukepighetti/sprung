@@ -16,30 +16,31 @@ final e = Math.exp;
 final sin = Math.sin;
 final cos = Math.cos;
 
+final error = 5e-3; // TODO 1px error at 1080p == 5e-4;
+
 void main() {
   testWidgets('Demo runs', (WidgetTester tester) async {
     await tester.pumpWidget(MyApp());
     expect(find.text('Sprung Demo'), findsOneWidget);
   });
-
   test("critically", () {
     final sprung = Sprung(damped: Damped.critically);
 
-    expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: 5e-3));
-    expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: 5e-3));
+    expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: error));
+    expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: error));
   });
 
   test("over", () {
     final sprung = Sprung(damped: Damped.over);
 
-    expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: 5e-3));
-    expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: 5e-3));
+    expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: error));
+    expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: error));
   });
 
   test("under", () {
     final sprung = Sprung(damped: Damped.under);
 
-    expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: 5e-3));
-    expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: 5e-3));
+    expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: error));
+    expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: error));
   });
 }
