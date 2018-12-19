@@ -36,7 +36,7 @@ Using Newton's Second Law of Motion, Hooke's Law, and velocity based damping, we
 
 ## Reliable accuracy
 
-Sprung exceeds Flutter specifications for curves by guaranteeing an error less than `1e-6`. This amounts to a `0.0019px` jitter at the beginning or end of a `1920px` move.
+Sprung exceeds Flutter specifications for curves by [guaranteeing](https://github.com/lukepighetti/sprung/blob/master/test/sprung_test.dart#L5) an error less than `1e-6`. This amounts to a `0.0019px` jitter at the beginning or end of a `1920px` move.
 
 ## Prior Art
 
