@@ -23,15 +23,13 @@ void main() {
     expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: 5e-3));
     expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: 5e-3));
 
-    final pow = Math.pow;
+    final e = Math.exp;
     final sin = Math.sin;
     final cos = Math.cos;
 
-    /// assumes m=1, k=180, c=20
-    f(t) =>
-        -0.5 *
-        pow(2.71828, (-6 * t)) *
-        (-2 * pow(2.71828, (6 * t)) + sin(12 * t) + 2 * cos(12 * t));
+    /// assumes m=1, k=180, c=12
+
+    f(t) => -0.5 * e(-6 * t) * (-2 * e(6 * t) + sin(12 * t) + 2 * cos(12 * t));
 
     expect(sprung.transform(0.1), moreOrLessEquals(f(0.1), epsilon: 5e-3));
   });

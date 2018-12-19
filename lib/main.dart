@@ -117,17 +117,17 @@ class Sprung extends Curve {
     // final sqrt = Math.sqrt;
     // final e = Math.exp;
 
-    // final m = 1;
-    // final k = 180;
-    // final c = 20;
+    // final m = 1.0;
+    // final k = 180.0;
+    // final c = 12.0;
 
     // final ckm = sqrt(c * c - 4 * k * m);
     // final mcm = m - (c / m);
 
-    // final first = (1 / (2 * ckm)) * c * (-e(1 / 2 * t) * (-ckm / mcm));
-    // final second = c * e(1 / 2 * t * (ckm / mcm));
-    // final third = ckm * e(1 / 2 * t * (-ckm / mcm));
-    // final fourth = ckm * e(1 / 2 * t * (ckm / mcm));
+    // final first = (1 / ckm) * 0.5 * c * (-e(0.5 * t) * (-ckm / mcm));
+    // final second = c * e(0.5 * t * (ckm / mcm));
+    // final third = ckm * e(0.5 * t * (-ckm / mcm));
+    // final fourth = ckm * e(0.5 * t * (ckm / mcm));
     // final fifth = 2 * ckm;
 
     // final result = -first + second + third + fourth - fifth;
@@ -135,14 +135,11 @@ class Sprung extends Curve {
     // print(result);
     // return result;
 
-    final pow = Math.pow;
+    final e = Math.exp;
     final sin = Math.sin;
     final cos = Math.cos;
 
-    f(t) =>
-        -0.5 *
-        pow(2.71828, (-6 * t)) *
-        (-2 * pow(2.71828, (6 * t)) + sin(12 * t) + 2 * cos(12 * t));
+    f(t) => -0.5 * e(-6 * t) * (-2 * e(6 * t) + sin(12 * t) + 2 * cos(12 * t));
 
     return f(t);
   }
