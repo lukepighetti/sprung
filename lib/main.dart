@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as Math;
 
+import './sprung.dart';
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -85,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
             return AnimatedContainer(
               duration: Duration(milliseconds: 1000),
-              curve: Sprung(),
+              curve: Sprung(damped: Damped.under),
               margin: EdgeInsets.only(
                 top: this._isOffset ? height - 200.0 : 100.0,
               ),
@@ -105,65 +107,69 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-///
-///
-///
+// ///
+// ///
+// ///
 
-class Sprung extends Curve {
-  Sprung();
+// class Sprung extends Curve {
+//   Sprung();
 
-  @override
-  double transform(double t) {
-    // final sqrt = Math.sqrt;
-    // final e = Math.exp;
+//   @override
+//   double transform(double t) {
+//     // final sqrt = Math.sqrt;
+//     // final e = Math.exp;
 
-    // final m = 1.0;
-    // final k = 180.0;
-    // final c = 12.0;
+//     // final m = 1.0;
+//     // final k = 180.0;
+//     // final c = 12.0;
 
-    // final ckm = sqrt(c * c - 4 * k * m);
-    // final mcm = m - (c / m);
+//     // final ckm = sqrt(c * c - 4 * k * m);
+//     // final mcm = m - (c / m);
 
-    // final first = (1 / ckm) * 0.5 * c * (-e(0.5 * t) * (-ckm / mcm));
-    // final second = c * e(0.5 * t * (ckm / mcm));
-    // final third = ckm * e(0.5 * t * (-ckm / mcm));
-    // final fourth = ckm * e(0.5 * t * (ckm / mcm));
-    // final fifth = 2 * ckm;
+//     // print([ckm, mcm]);
 
-    // final result = -first + second + third + fourth - fifth;
+//     // final first = (1 / ckm) * 0.5 * c * (-e(0.5 * t) * (-ckm / mcm));
+//     // final second = c * e(0.5 * t * (ckm / mcm));
+//     // final third = ckm * e(0.5 * t * (-ckm / mcm));
+//     // final fourth = ckm * e(0.5 * t * (ckm / mcm));
+//     // final fifth = 2 * ckm;
 
-    // print(result);
-    // return result;
+//     // final result = -first + second + third + fourth - fifth;
 
-    final e = Math.exp;
-    final sin = Math.sin;
-    final cos = Math.cos;
+//     // print(result);
+//     // return result;
 
-    f(t) => -0.5 * e(-6 * t) * (-2 * e(6 * t) + sin(12 * t) + 2 * cos(12 * t));
+//     final e = Math.exp;
+//     final sin = Math.sin;
+//     final cos = Math.cos;
 
-    return f(t);
-  }
-}
+//     // f(t) => -0.5 * e(-6 * t) * (-2 * e(6 * t) + sin(12 * t) + 2 * cos(12 * t));
 
-// f(double t) => t.toStringAsFixed(2);
+//     f(t) => -0.5 * e(-6 * t) * (-2 * e(6 * t) + sin(12 * t) + 2 * cos(12 * t));
 
-// this.distance = 100,
-// duration,
-// this.friction = 0.2,
-// this.mass = 1,
-// this.spring = 0.5,
-// }) : this.duration = Duration(milliseconds: 300);
+//     return f(t);
+//   }
+// }
 
-// final k = spring;
-// final x = distance;
-// final m = mass;
-// final u = spring;
-// final dt = duration.inMilliseconds / 1000;
+// // f(double t) => t.toStringAsFixed(2);
 
-// f(t) => ((k * (x * (1 - t)) / m) - u) * (dt * dt) / 2;
+// // this.distance = 100,
+// // duration,
+// // this.friction = 0.2,
+// // this.mass = 1,
+// // this.spring = 0.5,
+// // }) : this.duration = Duration(milliseconds: 300);
 
-// final result = 1 - f(t) / f(0.0);
+// // final k = spring;
+// // final x = distance;
+// // final m = mass;
+// // final u = spring;
+// // final dt = duration.inMilliseconds / 1000;
 
-// print([k, x, m, u, dt, result]);
+// // f(t) => ((k * (x * (1 - t)) / m) - u) * (dt * dt) / 2;
 
-// return result;
+// // final result = 1 - f(t) / f(0.0);
+
+// // print([k, x, m, u, dt, result]);
+
+// // return result;
