@@ -48,11 +48,11 @@ class Sprung extends Curve {
 
     switch (this.damped) {
       case Damped.over:
-        return c28(t);
+        return c28(t) + t * (1 - 0.999897869195509);
       case Damped.critically:
-        return c20(t);
+        return c20(t) + t * (1 - 1.0000167968177829);
       case Damped.under:
-        return c12(t);
+        return c12(t) + t * (1 - 0.9985733108072201);
       default:
         return c20(t);
     }

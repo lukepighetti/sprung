@@ -30,13 +30,13 @@ Using Newton's Second Law of Motion, Hooke's Law, and velocity based damping, we
 
 <img alt="m times x dot dot equals negative k times parenthesis x minus 1 close parenthesis minus c times x dot" src="https://raw.githubusercontent.com/lukepighetti/sprung/master/docs/equation.png" width="500">
 
-## Believable Motion
+## Believable motion
 
 <img alt="demo of under, critically, and over damped Flutter curves" src="https://raw.githubusercontent.com/lukepighetti/sprung/master/docs/demo.gif" width="400">
 
-## Reliable
+## Reliable accuracy
 
-All curves are subjected to unit tests and gaurantee an epsilon of `5e-3`
+Sprung exceeds Flutter specifications for curves by guaranteeing an error less than `1e-6`. This amounts to a `0.0019px` jitter at the beginning or end of a `1920px` move.
 
 ## Prior Art
 

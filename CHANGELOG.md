@@ -1,3 +1,7 @@
+## 1.0.0+9
+
+- Decrease test epsilon (error) to `1e-6`.
+
 ## 1.0.0+8
 
 - Improved inline docs.
