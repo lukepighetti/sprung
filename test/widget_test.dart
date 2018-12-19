@@ -10,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import "dart:math" as Math;
 
 import 'package:sprung/main.dart';
+import 'package:sprung/sprung.dart';
 
 void main() {
   testWidgets('Startup test', (WidgetTester tester) async {

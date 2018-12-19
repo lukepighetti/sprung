@@ -18,18 +18,25 @@ class Sprung extends Curve {
     final cos = Math.cos;
     final sqrt = Math.sqrt;
 
-    over(t) =>
+    // c = 26;
+
+    critically(t) =>
         -13 * e(-13 * t) * sin(sqrt(11) * t) / sqrt(11) -
         e(-13 * t) * cos(sqrt(11) * t) +
         1;
 
-    critically(t) =>
-        -0.5 * e(-6 * t) * (-2 * e(6 * t) + sin(12 * t) + 2 * cos(12 * t));
+    // c = 12
 
     under(t) =>
-        (2 * e(-4 * t) * sin(2 * sqrt(41) * t) / sqrt(41)) -
-        e(-4 * t) * cos(2 * sqrt(41) * t) +
-        1;
+        -0.5 * e(-6 * t) * (-2 * e(6 * t) + sin(12 * t) + 2 * cos(12 * t));
+
+    // // c = 8;
+    // under(t) =>
+    //     (2 * e(-4 * t) * sin(2 * sqrt(41) * t) / sqrt(41)) -
+    //     e(-4 * t) * cos(2 * sqrt(41) * t) +
+    //     1;
+
+    over(t) => t;
 
     switch (this.damped) {
       case Damped.over:
