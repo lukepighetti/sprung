@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './sprung.dart';
+import 'package:sprung/sprung.dart';
 
 void main() => runApp(MyApp());
 

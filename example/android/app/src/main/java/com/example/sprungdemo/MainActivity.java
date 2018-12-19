@@ -1,4 +1,4 @@
-package com.example.sprung;
+package com.example.sprungdemo;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

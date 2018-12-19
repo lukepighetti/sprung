@@ -9,7 +9,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import "dart:math" as Math;
 
-import 'package:sprung/main.dart';
 import 'package:sprung/sprung.dart';
 
 final e = Math.exp;
@@ -19,10 +18,6 @@ final cos = Math.cos;
 final error = 5e-3; // TODO 1px error at 1080p == 5e-4;
 
 void main() {
-  testWidgets('Demo runs', (WidgetTester tester) async {
-    await tester.pumpWidget(MyApp());
-    expect(find.text('Sprung Demo'), findsOneWidget);
-  });
   test("critically", () {
     final sprung = Sprung(damped: Damped.critically);
 
