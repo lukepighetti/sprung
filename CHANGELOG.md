@@ -1,3 +1,7 @@
+## 1.0.0+5
+
+* One more time with feeling!
+
 ## 1.0.0+4
 
 * Are you happy with my image links yet, pub?

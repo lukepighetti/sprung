@@ -9,7 +9,7 @@ description: Spring curves for Flutter animations. Based on real physics equatio
 # Both the version and the builder number may be overridden in flutter
 # build by specifying --build-name and --build-number, respectively.
 # Read more about versioning at semver.org.
-version: 1.0.0+4
+version: 1.0.0+5
 
 environment:
   sdk: ">=2.0.0-dev.68.0 <3.0.0"
