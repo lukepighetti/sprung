@@ -114,6 +114,27 @@ class Sprung extends Curve {
 
   @override
   double transform(double t) {
+    // final sqrt = Math.sqrt;
+    // final e = Math.exp;
+
+    // final m = 1;
+    // final k = 180;
+    // final c = 20;
+
+    // final ckm = sqrt(c * c - 4 * k * m);
+    // final mcm = m - (c / m);
+
+    // final first = (1 / (2 * ckm)) * c * (-e(1 / 2 * t) * (-ckm / mcm));
+    // final second = c * e(1 / 2 * t * (ckm / mcm));
+    // final third = ckm * e(1 / 2 * t * (-ckm / mcm));
+    // final fourth = ckm * e(1 / 2 * t * (ckm / mcm));
+    // final fifth = 2 * ckm;
+
+    // final result = -first + second + third + fourth - fifth;
+
+    // print(result);
+    // return result;
+
     final pow = Math.pow;
     final sin = Math.sin;
     final cos = Math.cos;
@@ -127,7 +148,7 @@ class Sprung extends Curve {
   }
 }
 
-f(double t) => t.toStringAsFixed(2);
+// f(double t) => t.toStringAsFixed(2);
 
 // this.distance = 100,
 // duration,
