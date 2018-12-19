@@ -1,18 +1,20 @@
 import 'package:flutter/widgets.dart';
 import 'dart:math' as Math;
 
-final e = Math.exp;
-final sin = Math.sin;
-final cos = Math.cos;
-final sqrt = Math.sqrt;
-
+/// The damping curves available for use with [Sprung]
 enum Damped {
+  /// An over-damped spring. Similar to an ease transition.
   over,
+
+  /// A well controlled spring with proper damping.
   critically,
+
+  /// A poorly controlled spring with insufficient damping.
   under,
 }
 
 class Sprung extends Curve {
+  /// Detrmines which damping curve to use. Default is [Damped.critically]
   final Damped damped;
 
   Sprung({
@@ -21,6 +23,11 @@ class Sprung extends Curve {
 
   @override
   double transform(double t) {
+    final e = Math.exp;
+    final sin = Math.sin;
+    final cos = Math.cos;
+    final sqrt = Math.sqrt;
+
     c28(t) => (5 / 4) * e(-18 * t) - (9 / 4) * e(-10 * t) + 1;
 
     c20(t) =>
