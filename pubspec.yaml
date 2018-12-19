@@ -1,5 +1,7 @@
 name: sprung
-description: A new Flutter project.
+author: Luke Pighetti <lukepighetti@gmail.com>
+homepage: https://github.com/lukepighetti/sprung
+description: Spring curves for Flutter animations. Based on real physics equations, with three damping curves.
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
