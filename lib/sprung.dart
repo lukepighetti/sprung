@@ -1,6 +1,11 @@
 import 'package:flutter/widgets.dart';
 import 'dart:math' as Math;
 
+final e = Math.exp;
+final sin = Math.sin;
+final cos = Math.cos;
+final sqrt = Math.sqrt;
+
 enum Damped {
   over,
   critically,
@@ -9,44 +14,32 @@ enum Damped {
 
 class Sprung extends Curve {
   final Damped damped;
-  Sprung({this.damped});
+
+  Sprung({
+    this.damped = Damped.critically,
+  });
 
   @override
   double transform(double t) {
-    final e = Math.exp;
-    final sin = Math.sin;
-    final cos = Math.cos;
-    final sqrt = Math.sqrt;
+    c28(t) => (5 / 4) * e(-18 * t) - (9 / 4) * e(-10 * t) + 1;
 
-    // c = 26;
-
-    critically(t) =>
-        -13 * e(-13 * t) * sin(sqrt(11) * t) / sqrt(11) -
-        e(-13 * t) * cos(sqrt(11) * t) +
+    c20(t) =>
+        -(1 / 2) * sqrt(5) * e(-10 * t) * sin(4 * sqrt(5) * t) -
+        e(-10 * t) * cos(4 * sqrt(5) * t) +
         1;
 
-    // c = 12
-
-    under(t) =>
+    c12(t) =>
         -0.5 * e(-6 * t) * (-2 * e(6 * t) + sin(12 * t) + 2 * cos(12 * t));
-
-    // // c = 8;
-    // under(t) =>
-    //     (2 * e(-4 * t) * sin(2 * sqrt(41) * t) / sqrt(41)) -
-    //     e(-4 * t) * cos(2 * sqrt(41) * t) +
-    //     1;
-
-    over(t) => t;
 
     switch (this.damped) {
       case Damped.over:
-        return over(t);
+        return c28(t);
       case Damped.critically:
-        return critically(t);
+        return c20(t);
       case Damped.under:
-        return under(t);
+        return c12(t);
       default:
-        return critically(t);
+        return c20(t);
     }
   }
 }

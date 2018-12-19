@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as Math;
 
 import './sprung.dart';
 
@@ -47,19 +46,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  bool _isOffset = false;
-
-  void _toggleOffset() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      this._isOffset = !this._isOffset;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -81,95 +67,77 @@ class _MyHomePageState extends State<MyHomePage> {
         alignment: Alignment.topCenter,
         padding: EdgeInsets.all(24.0),
 
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final height = constraints.maxHeight;
-
-            return AnimatedContainer(
-              duration: Duration(milliseconds: 1000),
-              curve: Sprung(damped: Damped.under),
-              margin: EdgeInsets.only(
-                top: this._isOffset ? height - 200.0 : 100.0,
-              ),
-              height: 100.0,
-              width: 100.0,
-              color: Colors.pinkAccent,
-            );
-          },
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            SprungBox(damped: Damped.under),
+            SprungBox(damped: Damped.critically),
+            SprungBox(damped: Damped.over),
+          ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _toggleOffset,
-        tooltip: 'Animated',
-        child: Icon(Icons.play_arrow),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
 
-// ///
-// ///
-// ///
+class SprungBox extends StatefulWidget {
+  final Damped damped;
+  final Duration duration;
 
-// class Sprung extends Curve {
-//   Sprung();
+  SprungBox({
+    this.damped = Damped.critically,
+    duration,
+  }) : this.duration = duration ?? Duration(milliseconds: 700);
 
-//   @override
-//   double transform(double t) {
-//     // final sqrt = Math.sqrt;
-//     // final e = Math.exp;
+  @override
+  _SprungBoxState createState() => _SprungBoxState();
+}
 
-//     // final m = 1.0;
-//     // final k = 180.0;
-//     // final c = 12.0;
+class _SprungBoxState extends State<SprungBox> {
+  bool _isOffset = false;
 
-//     // final ckm = sqrt(c * c - 4 * k * m);
-//     // final mcm = m - (c / m);
+  void _toggleOffset() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      this._isOffset = !this._isOffset;
+    });
+  }
 
-//     // print([ckm, mcm]);
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final height = constraints.maxHeight;
+        final text = this.widget.damped.toString().split(".").last;
+        final top = this._isOffset ? height - 200.0 : 100.0;
 
-//     // final first = (1 / ckm) * 0.5 * c * (-e(0.5 * t) * (-ckm / mcm));
-//     // final second = c * e(0.5 * t * (ckm / mcm));
-//     // final third = ckm * e(0.5 * t * (-ckm / mcm));
-//     // final fourth = ckm * e(0.5 * t * (ckm / mcm));
-//     // final fifth = 2 * ckm;
+        final width = MediaQuery.of(context).size.width / 3 - 30;
 
-//     // final result = -first + second + third + fourth - fifth;
-
-//     // print(result);
-//     // return result;
-
-//     final e = Math.exp;
-//     final sin = Math.sin;
-//     final cos = Math.cos;
-
-//     // f(t) => -0.5 * e(-6 * t) * (-2 * e(6 * t) + sin(12 * t) + 2 * cos(12 * t));
-
-//     f(t) => -0.5 * e(-6 * t) * (-2 * e(6 * t) + sin(12 * t) + 2 * cos(12 * t));
-
-//     return f(t);
-//   }
-// }
-
-// // f(double t) => t.toStringAsFixed(2);
-
-// // this.distance = 100,
-// // duration,
-// // this.friction = 0.2,
-// // this.mass = 1,
-// // this.spring = 0.5,
-// // }) : this.duration = Duration(milliseconds: 300);
-
-// // final k = spring;
-// // final x = distance;
-// // final m = mass;
-// // final u = spring;
-// // final dt = duration.inMilliseconds / 1000;
-
-// // f(t) => ((k * (x * (1 - t)) / m) - u) * (dt * dt) / 2;
-
-// // final result = 1 - f(t) / f(0.0);
-
-// // print([k, x, m, u, dt, result]);
-
-// // return result;
+        return GestureDetector(
+          onTap: _toggleOffset,
+          child: AnimatedContainer(
+            duration: this.widget.duration,
+            curve: Sprung(damped: this.widget.damped),
+            margin: EdgeInsets.only(
+              top: top,
+            ),
+            height: width,
+            width: width,
+            color: Colors.pinkAccent,
+            child: Center(
+              child: Text(
+                text,
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
