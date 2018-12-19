@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as Math;
 
 void main() => runApp(MyApp());
 
@@ -83,10 +84,10 @@ class _MyHomePageState extends State<MyHomePage> {
             final height = constraints.maxHeight;
 
             return AnimatedContainer(
-              duration: Duration(milliseconds: 400),
+              duration: Duration(milliseconds: 1000),
               curve: Sprung(),
               margin: EdgeInsets.only(
-                top: this._isOffset ? height - 100.0 : 0.0,
+                top: this._isOffset ? height - 200.0 : 100.0,
               ),
               height: 100.0,
               width: 100.0,
@@ -109,8 +110,42 @@ class _MyHomePageState extends State<MyHomePage> {
 ///
 
 class Sprung extends Curve {
+  Sprung();
+
   @override
   double transform(double t) {
-    return t * t;
+    final pow = Math.pow;
+    final sin = Math.sin;
+    final cos = Math.cos;
+
+    f(t) =>
+        -0.5 *
+        pow(2.71828, (-6 * t)) *
+        (-2 * pow(2.71828, (6 * t)) + sin(12 * t) + 2 * cos(12 * t));
+
+    return f(t);
   }
 }
+
+f(double t) => t.toStringAsFixed(2);
+
+// this.distance = 100,
+// duration,
+// this.friction = 0.2,
+// this.mass = 1,
+// this.spring = 0.5,
+// }) : this.duration = Duration(milliseconds: 300);
+
+// final k = spring;
+// final x = distance;
+// final m = mass;
+// final u = spring;
+// final dt = duration.inMilliseconds / 1000;
+
+// f(t) => ((k * (x * (1 - t)) / m) - u) * (dt * dt) / 2;
+
+// final result = 1 - f(t) / f(0.0);
+
+// print([k, x, m, u, dt, result]);
+
+// return result;
