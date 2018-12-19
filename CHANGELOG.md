@@ -1,3 +1,7 @@
+## 1.0.0+6
+
+* Typo.
+
 ## 1.0.0+5
 
 * One more time with feeling!
