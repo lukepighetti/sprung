@@ -36,6 +36,8 @@ class Sprung extends Curve {
   }) : this.sim = _sim(stiffness, damping);
 
   /// Allows the creation of a spring with custom stiffness and damping.
+  ///
+  /// A stiffness of `180` and damping of `20` creates a critically damped spring.
   Sprung.custom({
     @required double stiffness,
     @required double damping,
