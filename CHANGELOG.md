@@ -1,3 +1,7 @@
+## 1.1.0+10
+
+- Added preview API to next.dart.
+
 ## 1.0.0+9
 
 - Decrease test epsilon (error) to `1e-6`.
