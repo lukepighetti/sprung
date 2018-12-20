@@ -1,3 +1,7 @@
+## 1.1.0+11
+
+- Add test cases and streamline tests for Next.
+
 ## 1.1.0+10
 
 - Added preview API to next.dart.
