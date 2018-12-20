@@ -15,7 +15,7 @@ class Sprung extends Curve {
   final SpringSimulation sim;
 
   /// Provides a critically damped spring by default, with an easily overrideable damping value.
-  Sprung(double damping) : this.sim = _sim(180, damping ?? 20);
+  Sprung([double damping = 20]) : this.sim = _sim(180, damping);
 
   /// Provides an **under damped** spring by default, with overridable stiffness and damping.
   Sprung.underDamped({
