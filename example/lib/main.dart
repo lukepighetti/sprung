@@ -71,9 +71,18 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            SprungBox(damped: Damped.under),
-            SprungBox(damped: Damped.critically),
-            SprungBox(damped: Damped.over),
+            SprungBox(
+              title: "under",
+              curve: Sprung.underDamped,
+            ),
+            SprungBox(
+              title: "critically",
+              curve: Sprung.criticallyDamped,
+            ),
+            SprungBox(
+              title: "over",
+              curve: Sprung.overDamped,
+            ),
           ],
         ),
       ), // This trailing comma makes auto-formatting nicer for build methods.
@@ -82,11 +91,13 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class SprungBox extends StatefulWidget {
-  final Damped damped;
+  final String title;
+  final Curve curve;
   final Duration duration;
 
   SprungBox({
-    this.damped = Damped.critically,
+    @required this.title,
+    @required this.curve,
     duration,
   }) : this.duration = duration ?? Duration(milliseconds: 700);
 
@@ -113,7 +124,7 @@ class _SprungBoxState extends State<SprungBox> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final height = constraints.maxHeight;
-        final text = this.widget.damped.toString().split(".").last;
+        final text = widget.title;
         final top = this._isOffset ? height - 200.0 : 100.0;
 
         final width = MediaQuery.of(context).size.width / 3 - 30;
@@ -122,7 +133,7 @@ class _SprungBoxState extends State<SprungBox> {
           onTap: _toggleOffset,
           child: AnimatedContainer(
             duration: this.widget.duration,
-            curve: Sprung(damped: this.widget.damped),
+            curve: widget.curve,
             margin: EdgeInsets.only(
               top: top,
             ),

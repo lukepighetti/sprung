@@ -1,60 +1,46 @@
-import 'package:flutter/widgets.dart';
-import 'dart:math' as Math;
+import "package:flutter/physics.dart";
+import "package:flutter/widgets.dart";
 
-/// The damping curves available for use with [Sprung]
-enum Damped {
-  /// An over-damped spring. Similar to an ease transition.
-  over,
-
-  /// A well controlled spring with proper damping.
-  critically,
-
-  /// A poorly controlled spring with insufficient damping.
-  under,
-}
-
-/// A Curve that uses real physics equations to drive realistic animations.
+/// **Preview API for Sprung**
 ///
-/// Uses three curves, [Damped.under], [Damped.critically], and [Damped.over].
-///
-/// [Damped.under] provides the most "springy" animation.
-/// [Damped.critically] provides the most controlled damped spring animation.
-/// [Damped.over] provides an over-damped animation, like an ease but more realistic.
 
 class Sprung extends Curve {
-  /// Detrmines which damping curve to use. Default is [Damped.critically]
-  final Damped damped;
+  /// The underlying physics simulation.
+  final SpringSimulation _sim;
 
-  Sprung({
-    this.damped = Damped.critically,
-  });
+  /// A Curve that uses the Flutter Physics engine to drive realistic animations.
+  ///
+  /// Provides a critically damped spring by default, with an easily overrideable damping value.
+  ///
+  /// See also: [Sprung.custom], [Sprung.underDamped], [Sprung.criticallyDamped], [Sprung.overDamped]
+  factory Sprung([double damping = 20]) => Sprung.custom(damping: damping);
 
+  /// Provides a critically damped spring by default, with an easily overrideable damping, stiffness and mass value.
+  Sprung.custom({
+    double damping = 20,
+    double stiffness = 180,
+    double mass = 1.0,
+  }) : this._sim = SpringSimulation(
+          SpringDescription(
+            damping: damping,
+            mass: mass,
+            stiffness: stiffness,
+          ),
+          0.0,
+          1.0,
+          0.0,
+        );
+
+  /// Provides an **under damped** spring, which wobbles loosely at the end.
+  static Curve get underDamped => Sprung(12);
+
+  /// Provides a **critically damped** spring, which overshoots once very slightly.
+  static Curve get criticallyDamped => Sprung(20);
+
+  /// Provides an **over damped** spring, which smoothly glides into place.
+  static Curve get overDamped => Sprung(28);
+
+  /// Returns the position from the simulator and corrects the final output `x(1.0)` for tight tolerances.
   @override
-  double transform(double t) {
-    final e = Math.exp;
-    final sin = Math.sin;
-    final cos = Math.cos;
-    final sqrt = Math.sqrt;
-
-    c28(t) => (5 / 4) * e(-18 * t) - (9 / 4) * e(-10 * t) + 1;
-
-    c20(t) =>
-        -(1 / 2) * sqrt(5) * e(-10 * t) * sin(4 * sqrt(5) * t) -
-        e(-10 * t) * cos(4 * sqrt(5) * t) +
-        1;
-
-    c12(t) =>
-        -0.5 * e(-6 * t) * (-2 * e(6 * t) + sin(12 * t) + 2 * cos(12 * t));
-
-    switch (this.damped) {
-      case Damped.over:
-        return c28(t) + t * (1 - 0.999897869195509);
-      case Damped.critically:
-        return c20(t) + t * (1 - 1.0000167968177829);
-      case Damped.under:
-        return c12(t) + t * (1 - 0.9985733108072201);
-      default:
-        return c20(t);
-    }
-  }
+  double transform(double t) => _sim.x(t) + t * (1 - _sim.x(1.0));
 }

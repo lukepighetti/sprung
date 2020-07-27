@@ -2,27 +2,35 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:sprung/sprung.dart';
 
-final error = 1e-6;
+const error = 1e-6;
+
+testSprung(Sprung sprung) {
+  expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: error));
+  expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: error));
+}
 
 void main() {
-  test("critically", () {
-    final sprung = Sprung(damped: Damped.critically);
-
-    expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: error));
-    expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: error));
+  test("default", () {
+    testSprung(Sprung());
   });
 
-  test("over", () {
-    final sprung = Sprung(damped: Damped.over);
-
-    expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: error));
-    expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: error));
+  test("default with custom damping", () {
+    testSprung(Sprung(20));
   });
 
-  test("under", () {
-    final sprung = Sprung(damped: Damped.under);
+  test("custom", () {
+    testSprung(Sprung.custom(damping: 20, stiffness: 180, mass: 1.0));
+  });
 
-    expect(sprung.transform(1.0), moreOrLessEquals(1.0, epsilon: error));
-    expect(sprung.transform(0.0), moreOrLessEquals(0.0, epsilon: error));
+  test("criticallyDamped", () {
+    testSprung(Sprung.criticallyDamped);
+  });
+
+  test("overDamped", () {
+    testSprung(Sprung.overDamped);
+  });
+
+  test("underDamped", () {
+    testSprung(Sprung.underDamped);
   });
 }

@@ -1,3 +1,7 @@
+## 2.0.0+12
+
+- Migrate to using the built in Flutter physics simulation.
+
 ## 1.1.0+11
 
 - Add test cases and streamline tests for Next.
