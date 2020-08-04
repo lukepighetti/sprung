@@ -1,9 +1,6 @@
 import "package:flutter/physics.dart";
 import "package:flutter/widgets.dart";
 
-/// **Preview API for Sprung**
-///
-
 class Sprung extends Curve {
   /// The underlying physics simulation.
   final SpringSimulation _sim;
