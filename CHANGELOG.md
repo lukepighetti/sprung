@@ -1,3 +1,8 @@
+## 2.0.0+13
+
+- Remove cupertino_icons dependency
+- GitHub Actions test now uses `stable` branch
+
 ## 2.0.0+12
 
 - Migrate to using the built in Flutter physics simulation.
