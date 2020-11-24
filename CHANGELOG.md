@@ -1,3 +1,8 @@
+## 2.0.1
+
+- Specify a velocity with Sprung.custom().
+- `Sprung.criticallyDamped` and other named instances are static finals instead of getters.
+
 ## 2.0.0+13
 
 - Remove cupertino_icons dependency

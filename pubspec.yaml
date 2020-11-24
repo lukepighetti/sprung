@@ -1,7 +1,7 @@
 name: sprung
 homepage: https://github.com/lukepighetti/sprung
 description: Spring curves for Flutter animations. Based on real physics equations with three damping curves.
-version: 2.0.0+13
+version: 2.0.1
 
 environment:
   sdk: ">=2.0.0 <3.0.0"
