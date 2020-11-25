@@ -4,6 +4,17 @@ Sprung is an easy-to-consume Curve that uses real physics equations to drive you
 
 ## Easy to consume
 
+`Sprung` has three opinionated curves, `Sprung.underDamped`, `Sprung.criticallyDamped`, and `Sprung.overDamped`. This is the best way to get started.
+
+```dart
+AnimatedContainer(
+  curve: Sprung.underDamped,
+  /// ...
+),
+```
+
+When you want more fine control, use the default constructor which is critically damped, with overridable damping value.
+
 ```dart
 AnimatedContainer(
   /// Critically damped by default
@@ -20,23 +31,17 @@ AnimatedContainer(
 ),
 ```
 
+To build a fully custom spring simulation, use `Sprung.custom`. This allows you to define the spring's damping and stiffness, as well as the mass' mass and initial velocity.
+
 ```dart
 AnimatedContainer(
   /// Build a custom spring
-  curve: Sprung(
+  curve: Sprung.custom(
     damping: 20,
     stiffness: 180,
     mass: 1.0,
+    velocity: 0.0,
   ),
-  /// ...
-),
-```
-
-`Sprung` has three opinionated curves, `Sprung.underDamped`, `Sprung.criticallyDamped`, and `Sprung.overDamped`.
-
-```dart
-AnimatedContainer(
-  curve: Sprung.underDamped,
   /// ...
 ),
 ```
