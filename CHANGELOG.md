@@ -1,3 +1,7 @@
+## 2.0.1+1
+
+- Update documentation
+
 ## 2.0.1
 
 - Specify a velocity with Sprung.custom().
