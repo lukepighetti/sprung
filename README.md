@@ -17,7 +17,7 @@ When you want more fine control, use the default constructor which is critically
 
 ```dart
 AnimatedContainer(
-  /// Critically damped by default
+  /// Critically damped by default with a value of `20`
   curve: Sprung(),
   /// ...
 ),
@@ -25,8 +25,8 @@ AnimatedContainer(
 
 ```dart
 AnimatedContainer(
-  /// Easily adjust damping value
-  curve: Sprung(16),
+  /// Easily adjust damping value.
+  curve: Sprung(19),
   /// ...
 ),
 ```

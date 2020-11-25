@@ -4,7 +4,7 @@ import "package:flutter/widgets.dart";
 /// Use [Sprung] in place of any curve.
 ///
 /// Opinionated curves are [Sprung.underDamped], [Sprung.criticallyDamped], [Sprung.overDamped].
-/// These are the most common way to use [Sprung].
+/// This is the most common way to use [Sprung].
 ///
 /// If you wish to fine tune the damping action, use `Sprung()` which defaults to `Sprung(20)` and
 /// is the same as [Sprung.criticallyDamped]. Changing the value will fine tune the damping action.
