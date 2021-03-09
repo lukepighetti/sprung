@@ -24,7 +24,7 @@ class _SprungDemoAppState extends State<SprungDemoApp> {
         appBar: AppBar(
           title: Text(SprungDemoApp.title),
         ),
-        body: AnimatedContainer(
+        body: Material(
           /// Use [Sprung] in place of any curve.
           ///
           /// Opinionated curves are [Sprung.underDamped], [Sprung.criticallyDamped], [Sprung.overDamped].
@@ -44,13 +44,15 @@ class _SprungDemoAppState extends State<SprungDemoApp> {
           ///   velocity: 0.0,
           /// )
           /// ```
-          curve: Sprung.underDamped,
-          duration: Duration(milliseconds: 750),
-          alignment: toggle ? Alignment.bottomCenter : Alignment.topCenter,
-          margin: EdgeInsets.symmetric(vertical: 50),
-          child: RaisedButton(
-            child: Text('Tap me!'),
-            onPressed: () => setState(() => toggle = !toggle),
+          child: AnimatedContainer(
+            curve: Sprung.underDamped,
+            duration: Duration(milliseconds: 750),
+            alignment: toggle ? Alignment.bottomCenter : Alignment.topCenter,
+            margin: EdgeInsets.symmetric(vertical: 50),
+            child: ElevatedButton(
+              child: Text('Tap me!'),
+              onPressed: () => setState(() => toggle = !toggle),
+            ),
           ),
         ),
       ),
