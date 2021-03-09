@@ -47,7 +47,7 @@ class _SprungDemoAppState extends State<SprungDemoApp> {
           child: AnimatedContainer(
             curve: Sprung.underDamped,
             duration: Duration(milliseconds: 750),
-            alignment: toggle ? Alignment.bottomCenter : Alignment.topCenter,
+            alignment: toggle ? Alignment.topCenter : Alignment.bottomCenter,
             margin: EdgeInsets.symmetric(vertical: 50),
             child: ElevatedButton(
               child: Text('Tap me!'),
