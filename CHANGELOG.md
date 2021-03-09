@@ -1,3 +1,7 @@
+## 3.0.0
+
+- Null safety
+
 ## 2.0.1+1
 
 - Update documentation
