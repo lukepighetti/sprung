@@ -1,3 +1,7 @@
+## 3.0.1
+
+- Removed `uses-material-design: true` from pubspec.yaml
+
 ## 3.0.0
 
 - Null safety
